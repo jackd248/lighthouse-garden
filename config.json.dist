@@ -1,0 +1,12 @@
+{
+    "title": "Lighthouse Garden",
+    "description": "Aggregate performance data",
+    "data_dir": "data/",
+    "targets": [
+        {
+            "title": "Google",
+            "identifier": "google",
+            "url": "https://google.com"
+        }
+    ]
+}
