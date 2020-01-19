@@ -52,7 +52,7 @@ def main ():
         history = get_history(target)
         history.append(result)
         set_history(target,history)
-        print('✓ (' + report['categories']['performance']['score'] + ')')
+        print(report['categories']['performance']['score'])
 
 
     # sort by performance
