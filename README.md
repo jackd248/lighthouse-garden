@@ -1,26 +1,44 @@
 # Lighthouse garden
 
-Aggregate [lighthouse](https://github.com/GoogleChrome/lighthouse) performance data on predefined targets. 
+Aggregate a performance overview for various target pages using the [lighthouse](https://github.com/GoogleChrome/lighthouse) service. 
 
 ## Install/Config
-
-```bash
-# Start DDEV container
-ddev start
-```
 
 ```bash
 # Copy/edit config.json
 mv config.json.dist config.json
 ```
 
-## Update data
+Adding target pages
+
+```json
+{
+    "title": "Google",
+    "identifier": "google",
+    "url": "https://google.com"
+}
+```
+
+Starting the container
 
 ```bash
-# Run python script
-python generate.py
+# Start DDEV container
+ddev start
 ```
 
 Open `http://lighthouse-garden.ddev.site/`
 
-*ToDo*
+## Update data
+
+```bash
+# Run python script
+ddev exec web python generate.py
+```
+
+Register optionally a cronjob for regulary updates
+
+```bash
+0 5 * * * python /var/www/html/generate.py
+```
+
+*ToDo: Further documentation*
