@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import os, json, sys, time, subprocess, datetime, sys
+import os, json, sys, time, subprocess, datetime, sys, export
 from tabulate import tabulate
 
 def main ():
@@ -33,36 +33,63 @@ def main ():
             os.makedirs('./var/' + data_dir + target['identifier'])
 
         lighthouse(target)
-        with open('./var/' + data_dir + target['identifier'] + '/index.report.json', 'r') as read_file:
-            report = json.load(read_file)
-
-        result = [
-            target['title'],
-            target['url'],
-            report['categories']['performance']['score'],
-            report['categories']['accessibility']['score'],
-            report['categories']['best-practices']['score'],
-            report['categories']['seo']['score'],
-            '/var/' + data_dir + target['identifier'] + '/index.report.html',
-            '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
-        ]
-
+        
+        result = get_result(target)
         results.append(result)
 
-        history = get_history(target)
+        history = export.get_history(target)
         history.append(result)
-        set_history(target,history)
-        print(report['categories']['performance']['score'])
-
-
-    # sort by performance
-    results.sort(key=lambda x: x[2], reverse=True)
+        export.set_history(target,history)
+        print(result['performance'])
 
     # export
-    print_stdout()
-    export_html()
+    #print_stdout()
+    export.export_html()
 
 # functions
+def get_config ():
+    # read config
+    with open("config.json", "r") as read_file:
+        config = json.load(read_file)
+    return config
+
+def get_data_dir ():
+    return get_config()['data_dir']
+
+def get_result(target):
+    with open('./var/' + get_data_dir() + target['identifier'] + '/index.report.json', 'r') as read_file:
+            report = json.load(read_file)
+
+    result = {
+        'title': target['title'],
+        'url': target['url'],
+        'performance': int(round(report['categories']['performance']['score'] * 100)),
+        'accessibility': int(round(report['categories']['accessibility']['score'] * 100)),
+        'best-practices': int(round(report['categories']['best-practices']['score'] * 100)),
+        'seo': int(round(report['categories']['seo']['score'] * 100)),
+        'report': '/var/' + get_data_dir() + target['identifier'] + '/index.report.html',
+        'date': '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
+    }
+
+    return result
+
+def get_results():
+    results = []
+    for target in get_config()['targets']:
+        results.append(get_result(target))
+
+    # sort by performance
+    results.sort(key=lambda x: x['performance'], reverse=True)
+
+    return results
+
+
+def get_target_by_attribute(value,attribute):
+    for target in get_config()['targets']:
+        if target[attribute] == value:
+            return target
+    return None
+
 def lighthouse (target):
     os.system('lighthouse ' + target['url'] + ' --quiet --chrome-flags="--no-sandbox --headless --disable-gpu" --output json --output html --output-path ./var/' + data_dir + target['identifier'] + '/index ')
 
@@ -79,40 +106,6 @@ def print_stdout ():
     table = tabulate(results, headers, tablefmt="github", floatfmt=".2f")
     print('Result(s):')
     print(table)
-
-def export_html ():
-    now = datetime.datetime.now()
-    html = open("index.html","w")
-    html.write('<html><head><title>' + config['title'] + '</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"></head><body>')
-    html.write('<div class="jumbotron"><div class="container"><h1>' + config['title'] + '</h1><p>' + config['description'] + '</p></div></div><div class="container"><p class="text-right"><small>Last checked <span class="label label-default">' + now.strftime("%d/%m/%Y %H:%M") + '</span></small></p><table class="table"><thead><tr><th>Title</th><th>URL</th><th>Performance</th><th>Accessibility</th><th>Best practices</th><th>SEO</th><th>Details</th></tr><tbody>')
-    for result in results:
-        html.write('<tr>')
-        for item in result:
-            if item != result[-1]:
-                if item != result[6] and item != result[1]:
-                    if (isinstance(item, float) or isinstance(item, int)):
-                        item = label(item) + str('{:10.2f}'.format(item)) + '</span>'
-                    html.write('<td>' + str(item)+ '</td>')
-                else: 
-                    html.write('<td><a href="' + item + '" target="_blank">' + item + '</a></td>')
-        html.write('</tr>')
-    # html.write(tabulate(results, headers, tablefmt="html", floatfmt=".2f"))
-    html.write('</tbody></table></div></body></html>')
-    html.close()
-
-def get_history(target):
-    history_file = './var/' + data_dir + target['identifier'] + '/history.json'
-    if os.path.isfile(history_file):
-        with open(history_file, "r") as read_file:
-            return json.load(read_file)
-    else:
-        open(history_file, 'w').close()
-        return []
-
-def set_history(target, history):
-    history_file = './var/' + data_dir + target['identifier'] + '/history.json'
-    with open(history_file, "w") as write_file:
-        json.dump(history, write_file)
 
 if __name__ == "__main__":
     main()
