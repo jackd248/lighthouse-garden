@@ -1,6 +1,6 @@
 {
     "title": "Lighthouse Garden",
-    "description": "Aggregate performance data",
+    "description": "Monitoring performance data by lighthouse",
     "data_dir": "data/",
     "targets": [
         {

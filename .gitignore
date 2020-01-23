@@ -2,3 +2,4 @@
 config.json
 index.html
 var/
+*.pyc
