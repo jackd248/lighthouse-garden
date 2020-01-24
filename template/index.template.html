@@ -1,78 +1,82 @@
 <html>
-   <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-      <link rel="apple-touch-icon" sizes="57x57" href="assets/favicons/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="assets/favicons/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="assets/favicons/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="assets/favicons/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="assets/favicons/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="assets/favicons/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="assets/favicons/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="assets/favicons/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="assets/favicons/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="assets/favicons/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
-        <link rel="manifest" href="assets/favicons/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-        <meta name="theme-color" content="#ffffff">
-      <title><% title %></title>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-      <link rel="stylesheet" href="assets/percentage.css"/>
-      <link rel="stylesheet" href="assets/style.css"/>
-      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script><script src="assets/graph.js"></script>
-   </head>
-   <body>
-      <div class="jumbotron">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-auto">
-                   <img src="assets/tower.svg" class="logo" width="50" alt="lighthouse" />
-                </div>
-               <div class="col-md-auto">
-                  <h1><% title %></h1>
-               </div>
-               <div class="col">
-                  <p class="text-muted"><% description %></p>
-               </div>
-               <div class="col-md-auto"><small>Last checked <span class="badge badge-secondary"><% date %></span></small></div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <title><% title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/percentage.css"/>
+    <link rel="stylesheet" href="assets/style.css"/>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="assets/graph.js"></script>
+</head>
+<body>
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-auto">
+                <img src="assets/tower.svg" class="logo" width="50" alt="lighthouse"/>
             </div>
-         </div>
-      </div>
-      <div class="container">
-         <table class="table">
-            <thead>
-               <tr>
-                  <th>Target</th>
-                  <th>Average</th>
-                  <th>Performance Graph</th>
-                  <th>Performance</th>
-                  <th>Accessibility</th>
-                  <th>Best practices</th>
-                  <th>SEO</th>
-               </tr>
-               <tr>
-                    <th colspan="3"></th>
-                    <th colspan="4">Detailed information by the last lighthouse report</th>
-                </tr>
-            <tbody>
-               <% list %>
-            </tbody>
-         </table>
-      </div>
-      <footer>
-        <div class="jumbotron">
-            <div class="container">
-                <div class="text-center">
-                    <small>
-                        <a href="https://github.com/jackd248/lighthouse-garden" class="link-gray" target="_blank">lighthouse garden v1.0</a>
-                    </small>
-                </div>
+            <div class="col-md-auto">
+                <h1><% title %></h1>
+            </div>
+            <div class="col">
+                <p class="text-muted"><% description %></p>
+            </div>
+            <div class="col-md-auto"><small>Last checked <span class="badge badge-secondary"><% date %></span></small>
             </div>
         </div>
-      </footer>
-   </body>
+    </div>
+</div>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Target</th>
+            <th>Average</th>
+            <th>Performance Graph</th>
+            <th>Performance</th>
+            <th>Accessibility</th>
+            <th>Best practices</th>
+            <th>SEO</th>
+        </tr>
+        <tr>
+            <th colspan="3"></th>
+            <th colspan="4">Detailed information by the last lighthouse report</th>
+        </tr>
+        <tbody>
+        <% list %>
+        </tbody>
+    </table>
+</div>
+<footer>
+    <div class="jumbotron">
+        <div class="container">
+            <div class="text-center">
+                <small>
+                    <a href="https://github.com/jackd248/lighthouse-garden" class="link-gray" target="_blank">
+                        lighthouse garden v1.0
+                    </a>
+                </small>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
 </html>
