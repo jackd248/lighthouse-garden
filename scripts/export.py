@@ -1,6 +1,12 @@
 #!/usr/bin/python
 
-import utility, datetime
+import utility, datetime, os
+
+ASSETS_CSS = 'assets/css'
+ASSETS_JS ='assets/js'
+
+TAG_CSS = 'style'
+TAG_JS ='script'
 
 def export_html (path = "./"):
     now = datetime.datetime.now()
@@ -48,7 +54,9 @@ def export_html (path = "./"):
         title = utility.get_config()['title'],
         description = utility.get_config()['description'],
         date = now.strftime("%d/%m/%Y %H:%M"),
-        list = entries
+        list = entries,
+        assets_css = render_assets(ASSETS_CSS, TAG_CSS),
+        assets_js = render_assets(ASSETS_JS, TAG_JS)
     )
     html.write(rendered_html)
     html.close()
@@ -78,3 +86,12 @@ def render_template(template, **params):
         replaceString = "<% " + arg + " %>"
         html = html.replace(replaceString, params[arg])
     return html
+
+def render_assets (dir, tag):
+    html = ''
+    for file in os.listdir(dir):
+        with open(dir + '/' + file, 'r') as read_file:
+            html += '<!-- ' + file + ' -->\n<' + tag + '>\n' + read_file.read().replace('\n', '') + '\n</' + tag + '>\n'
+    return html
+
+    

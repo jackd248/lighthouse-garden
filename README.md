@@ -1,6 +1,6 @@
-# Lighthouse garden
+<h1 align="center">Lighthouse Garden</h1>
 
-<p align="center"><img src="./assets/tower.svg" alt="Lighthouse" width="100">
+<p align="center"><img src="./assets/tower.svg" alt="Lighthouse" width="150">
 </p>
 
 Aggregate a performance overview for various target pages using the [lighthouse](https://github.com/GoogleChrome/lighthouse) service. 
@@ -52,6 +52,7 @@ python illuminate.py
 -s, --not-saved     Disable the persistence of received data
 -c, --config        Path to config file
 -u, --url           Providing an URL to check
+-n, --run           Number of runs
 ```
 
 Register optionally a cronjob for regulary updates

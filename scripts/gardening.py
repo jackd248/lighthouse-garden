@@ -11,8 +11,8 @@ def fetch_data (save = True, url = None):
     global results
     data_dir = utility.get_config()['data_dir']
     # create target dir
-    if not os.path.exists('./var/' + data_dir):
-        os.makedirs('./var/' + data_dir)
+    if not os.path.exists('./' + data_dir):
+        os.makedirs('./' + data_dir)
 
     # processing targets
     results = []
@@ -35,22 +35,18 @@ def process_target(target, save):
     sys.stdout.write('> ' + target['title'] + ' (' + target['url'] + ') ... ')
     sys.stdout.flush()
 
-    # create target data dir
-    if not os.path.exists('./var/' + data_dir + target['identifier']):
-        os.makedirs('./var/' + data_dir + target['identifier'])
-
-    output = '--output json --output-path ./var/' + data_dir + target['identifier'] + '/index '
+    output = '--output json --output-path ./' + data_dir + target['identifier'] + ' '
     if save is True:
         output += ' --output html'
 
     lighthouse(target, output)
     
-    if save is True:
-        file_name = 'index.report.json'
-    else:
-        file_name = 'index'
+    #if save is True:
+    #    file_name = 'index.report.json'
+    #else:
+    #    file_name = 'index'
 
-    result = utility.get_result(target,file_name)
+    result = utility.get_result(target)
 
     results.append(result)
 

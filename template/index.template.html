@@ -21,10 +21,7 @@
     <meta name="theme-color" content="#ffffff">
     <title><% title %></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/percentage.css"/>
-    <link rel="stylesheet" href="assets/style.css"/>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="assets/graph.js"></script>
+    <% assets_css %>
 </head>
 <body>
 <div class="jumbotron">
@@ -78,5 +75,7 @@
         </div>
     </div>
 </footer>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<% assets_js %>
 </body>
 </html>

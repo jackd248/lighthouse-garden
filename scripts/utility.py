@@ -1,27 +1,41 @@
 #!/usr/bin/python
 import json, datetime, os, sys
+from urlparse import urlparse
 sys.path.append('../')
 import illuminate
 
+config = None
+
 def get_config ():
-    # ToDo: check illuminate.config
-    if True:
-        # read config
-        with open("config.json", "r") as read_file:
-            return json.load(read_file)
+    if not config is None:
+        return config
     else:
-        return {
-            'title': 'Lighthouse garden',
-            'description': 'Aggregate performance data',
-            'data_dir': 'data/'
-        }
+        if os.path.isfile('config.json'):
+            set_config('config.json')
+        else:
+            # Default config
+            return {
+                'title': 'Lighthouse garden',
+                'description': 'Aggregate performance data',
+                'data_dir': 'data/'
+            }
+        return config
+
+def set_config (config_file):
+    global config
+    with open(config_file, 'r') as read_file:
+        config =  json.load(read_file)
     
 
 def get_data_dir ():
     return get_config()['data_dir']
 
-def get_result(target, file_name = 'index.report.json'):
-    with open('./var/' + get_data_dir() + target['identifier'] + '/' + file_name, 'r') as read_file:
+def get_result(target, file_name = None):
+
+    if file_name is None:
+        file_name = target['identifier'] + '.report.json'
+
+    with open('./' + get_data_dir() + file_name, 'r') as read_file:
             report = json.load(read_file)
 
     result = {
@@ -31,7 +45,7 @@ def get_result(target, file_name = 'index.report.json'):
         'accessibility': int(round(report['categories']['accessibility']['score'] * 100)),
         'best-practices': int(round(report['categories']['best-practices']['score'] * 100)),
         'seo': int(round(report['categories']['seo']['score'] * 100)),
-        'report': '/var/' + get_data_dir() + target['identifier'] + '/index.report.html',
+        'report': '/' + get_data_dir() + '/' + target['identifier'] + '.report.html',
         'date': '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
     }
 
@@ -74,7 +88,7 @@ def get_history_by_attribute(target,attribute):
     return history_data
 
 def get_history(target):
-    history_file = './var/' + get_data_dir() + target['identifier'] + '/history.json'
+    history_file = './' + get_data_dir() + target['identifier'] + '.history.json'
     if os.path.isfile(history_file):
         with open(history_file, "r") as read_file:
             return json.load(read_file)
@@ -83,6 +97,6 @@ def get_history(target):
         return []
 
 def set_history(target, history):
-    history_file = './var/' + get_data_dir() + target['identifier'] + '/history.json'
+    history_file = './' + get_data_dir() + target['identifier'] + '.history.json'
     with open(history_file, "w") as write_file:
         json.dump(history, write_file)
