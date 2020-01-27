@@ -91,7 +91,7 @@ def render_assets (dir, tag):
     html = ''
     for file in os.listdir(dir):
         with open(dir + '/' + file, 'r') as read_file:
-            html += '<!-- ' + file + ' -->\n<' + tag + '>\n' + read_file.read().replace('\n', '') + '\n</' + tag + '>\n'
+            html += '<!-- ' + file + ' -->\n<' + tag + '>\n' + read_file.read() + '\n</' + tag + '>\n'
     return html
 
     
