@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import os, sys, json, utility
-from tabulate import tabulate
+# from tabulate import tabulate
 from urlparse import urlparse
 
 CHROME_FLAGS = '--no-sandbox --headless --disable-gpu'
@@ -58,7 +58,7 @@ def process_target(target, save):
     print(result['performance'])
 
 def lighthouse (target, output):
-    return os.system('lighthouse ' + target['url'] + ' --quiet --chrome-flags="' + CHROME_FLAGS + '" ' + output)
+    return os.system('lighthouse ' + target['url'] + ' --quiet --emulated-form-factor=none --throttling.cpuSlowdownMultiplier=1 --disable-device-emulation --chrome-flags="' + CHROME_FLAGS + '" ' + output)
 
 def print_stdout ():
     headers = ['Title', 'URL', 'Performance', 'Accessibility', 'Best practices', 'SEO', 'Details', 'Date']
