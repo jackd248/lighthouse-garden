@@ -8,6 +8,7 @@ run = 1
 
 def main():
     global args
+    global run
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-e','--export', help='Exporting stored data to a web page', required=False)
