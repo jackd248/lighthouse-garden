@@ -66,8 +66,7 @@ def export_html (path = "./"):
         entries += entry
 
     rendered_html = render_template('template/index.template.html',
-        title = utility.get_config()['title'],
-        description = utility.get_config()['description'],
+        logo = render_logo(),
         date = now.strftime("%Y-%m-%dT%H:%M:%SZ"),
         list = entries,
         assets_css = render_assets(ASSETS_CSS, TAG_CSS),
@@ -109,4 +108,7 @@ def render_assets (dir, tag):
             html += '<!-- ' + file + ' -->\n<' + tag + '>\n' + read_file.read() + '\n</' + tag + '>\n'
     return html
 
+def render_logo():
+    with open('assets/tower.svg', 'r') as read_file:
+        return read_file.read()
     
