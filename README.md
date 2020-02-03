@@ -53,6 +53,7 @@ python illuminate.py
 -c, --config        Path to config file
 -u, --url           Providing an URL to check
 -n, --run           Number of runs
+-p, --performance   Only measure performance data
 ```
 
 Register optionally a cronjob for regulary updates
