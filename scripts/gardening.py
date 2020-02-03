@@ -58,7 +58,7 @@ def process_target(target, save):
     print(result['performance'])
 
 def lighthouse (target, output):
-    return os.system('lighthouse ' + target['url'] + ' --quiet --emulated-form-factor=none --throttling.cpuSlowdownMultiplier=1 --disable-device-emulation --chrome-flags="' + CHROME_FLAGS + '" ' + output)
+    return os.system('lighthouse ' + target['url'] + ' --quiet --emulated-form-factor=none --no-enable-error-reporting --chrome-flags="' + CHROME_FLAGS + '" ' + output)
 
 def print_stdout ():
     headers = ['Title', 'URL', 'Performance', 'Accessibility', 'Best practices', 'SEO', 'Details', 'Date']
