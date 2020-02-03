@@ -5,8 +5,10 @@ import os, sys, json, utility
 from urlparse import urlparse
 
 CHROME_FLAGS = '--no-sandbox --headless --disable-gpu'
+LIGHTHOUSE_OPTIONS=' --quiet --emulated-form-factor=none --no-enable-error-reporting'
+PERFORMANCE_ONLY_OPTION = ' --only-categories=performance'
 
-def fetch_data (save = True, url = None):
+def fetch_data (save = True, url = None, performanceOnly = False):
     global data_dir
     global results
     data_dir = utility.get_config()['data_dir']
@@ -19,7 +21,7 @@ def fetch_data (save = True, url = None):
     print('Checking the following site(s)')
     if url is None:
         for target in utility.get_config()['targets']:
-            process_target(target, save)
+            process_target(target, save, performanceOnly)
     else:
         process_target({
             'title': urlparse(url).netloc,
@@ -31,15 +33,11 @@ def fetch_data (save = True, url = None):
     # export
     #print_stdout()
 
-def process_target(target, save):
+def process_target(target, save, performanceOnly = False):
     sys.stdout.write('> ' + target['title'] + ' (' + target['url'] + ') ... ')
     sys.stdout.flush()
 
-    output = '--output json --output-path ./' + data_dir + target['identifier'] + ' '
-    if save is True:
-        output += ' --output html'
-
-    lighthouse(target, output)
+    lighthouse(target, performanceOnly)
     
     #if save is True:
     #    file_name = 'index.report.json'
@@ -57,8 +55,13 @@ def process_target(target, save):
 
     print(result['performance'])
 
-def lighthouse (target, output):
-    return os.system('lighthouse ' + target['url'] + ' --quiet --emulated-form-factor=none --no-enable-error-reporting --chrome-flags="' + CHROME_FLAGS + '" ' + output)
+def lighthouse (target, performanceOnly = False):
+    _options = LIGHTHOUSE_OPTIONS
+    _options += ' --chrome-flags="' + CHROME_FLAGS + '"'
+    _options += ' --output json --output html --output-path ./' + data_dir + target['identifier']
+    if performanceOnly:
+        _options += PERFORMANCE_ONLY_OPTION
+    return os.system('lighthouse ' + target['url'] + _options)
 
 def print_stdout ():
     headers = ['Title', 'URL', 'Performance', 'Accessibility', 'Best practices', 'SEO', 'Details', 'Date']

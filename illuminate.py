@@ -5,10 +5,12 @@ sys.path.append('./scripts')
 import export, utility, gardening
 
 run = 1
+performance = False
 
 def main():
     global args
     global run
+    global performance
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-e','--export', help='Exporting stored data to a web page', required=False)
@@ -18,6 +20,7 @@ def main():
     parser.add_argument('-c','--config', help='Path to config file', required=False)
     parser.add_argument('-u','--url', help='Providing an URL to check', required=False)
     parser.add_argument('-n','--run', help='Number of runs', required=False)
+    parser.add_argument('-p','--performance', help='Only measure performance data', required=False)
 
     args = parser.parse_args()
 
@@ -26,6 +29,9 @@ def main():
 
     if not args.run is None:
         run = int(args.run)
+    
+    if not args.performance is None:
+        performance = True
 
     if is_verbose():
         print(utility.get_config()['title'])
@@ -42,7 +48,7 @@ def main():
         
         i = 1
         while i <= run:
-            gardening.fetch_data(save, url)
+            gardening.fetch_data(save, url, performance)
             i += 1
 
     if not args.export is None:

@@ -42,12 +42,18 @@ def get_result(target, file_name = None):
         'title': target['title'],
         'url': target['url'],
         'performance': int(round(report['categories']['performance']['score'] * 100)),
-        'accessibility': int(round(report['categories']['accessibility']['score'] * 100)),
-        'best-practices': int(round(report['categories']['best-practices']['score'] * 100)),
-        'seo': int(round(report['categories']['seo']['score'] * 100)),
         'report': '/' + get_data_dir() + '/' + target['identifier'] + '.report.html',
         'date': '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
     }
+
+    if 'accessibility' in report['categories']:
+        result['accessibility'] = int(round(report['categories']['accessibility']['score'] * 100))
+    
+    if 'best-practices' in report['categories']:
+        result['best-practices'] = int(round(report['categories']['best-practices']['score'] * 100))
+    
+    if 'seo' in report['categories']:
+        result['seo'] = int(round(report['categories']['seo']['score'] * 100))
 
     return result
 

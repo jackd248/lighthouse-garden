@@ -17,6 +17,33 @@ def export_html (path = "./"):
 
     entries = ''
     for result in results:
+        if 'accessibility' in result:
+            circle_accessibility = render_percentage_circle(
+                result['report'],
+                'accessibility',
+                result['accessibility']
+            )
+        else:
+            circle_accessibility = ''
+
+        if 'best-practices' in result:
+            circle_best_practices = render_percentage_circle(
+                result['report'],
+                'best-practices',
+                result['best-practices']
+            )
+        else:
+            circle_best_practices = ''
+
+        if 'seo' in result:
+            circle_seo = render_percentage_circle(
+                result['report'],
+                'seo',
+                result['seo']
+            )
+        else:
+            circle_seo = ''
+
         entry = render_template('template/partials/item.template.html',
             title = result['title'],
             url = result['url'],
@@ -32,21 +59,9 @@ def export_html (path = "./"):
                 'performance',
                 result['performance']
             ),
-            circle_accessibility = render_percentage_circle(
-                result['report'],
-                'accessibility',
-                result['accessibility']
-            ),
-            circle_best_practices = render_percentage_circle(
-                result['report'],
-                'best-practices',
-                result['best-practices']
-            ),
-            circle_seo = render_percentage_circle(
-                result['report'],
-                'seo',
-                result['seo']
-            )
+            circle_accessibility = circle_accessibility,
+            circle_best_practices = circle_best_practices,
+            circle_seo = circle_seo
         )
         entries += entry
 
