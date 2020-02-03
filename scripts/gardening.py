@@ -38,20 +38,13 @@ def process_target(target, save, performanceOnly = False):
     sys.stdout.flush()
 
     lighthouse(target, performanceOnly)
-    
-    #if save is True:
-    #    file_name = 'index.report.json'
-    #else:
-    #    file_name = 'index'
 
     result = utility.get_result(target)
 
     results.append(result)
 
     if save is True:
-        history = utility.get_history(target)
-        history.append(result)
-        utility.set_history(target,history)
+        utility.add_result_to_history(target, result)
 
     print(result['performance'])
 

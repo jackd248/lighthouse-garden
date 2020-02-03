@@ -30,6 +30,12 @@ def set_config (config_file):
 def get_data_dir ():
     return get_config()['data_dir']
 
+def get_keep_history ():
+    if 'keep_history' in get_config():
+        return int(get_config()['keep_history'])
+    else: 
+        return 0
+
 def get_result(target, file_name = None):
 
     if file_name is None:
@@ -82,6 +88,13 @@ def add_average_data_and_sort(results):
     # sort by average
     results.sort(key=lambda x: x['average'], reverse=True)
     return results
+
+def add_result_to_history(target, result):
+    _history = get_history(target)
+    while len(_history) > get_keep_history():
+        del _history[0]
+    _history.append(result)
+    set_history(target,_history)
 
 def get_average_by_attribute(target,attribute):
     history_data = get_history_by_attribute(target,attribute)
