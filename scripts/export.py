@@ -48,7 +48,8 @@ def export_html (path = "./"):
             title = result['title'],
             url = result['url'],
             identifier = utility.get_target_by_attribute(result['title'],'title')['identifier'],
-            graph_values = ', '.join(map(str, utility.get_history_by_attribute(utility.get_target_by_attribute(result['title'],'title'), 'performance'))),
+            graph_values_y = ', '.join(map(str, utility.get_history_by_attribute(utility.get_target_by_attribute(result['title'],'title'), 'performance'))),
+            graph_values_x = ', '.join(map(str, utility.get_history_by_attribute(utility.get_target_by_attribute(result['title'],'title'), 'date'))),
             circle_average = render_percentage_circle(
                 result['report'],
                 '',

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var classes = document.getElementsByClassName("graph");
 var layout = {
   showlegend: false,
-  height: 50,
+  height: 80,
   width: 300,
   xaxis: {
     showline: false,
@@ -28,15 +28,17 @@ var layout = {
     l: 0,
     r: 0,
     t: 0,
-    b: 0
+    b: 30
   },
 };
 var i;
 for (i = 0; i < classes.length; i++) {
-  var values = classes[i].getAttribute('data-values').split(',');
+  var values_y = classes[i].getAttribute('data-values-y').split(',');
+  var values_x = classes[i].getAttribute('data-values-x').split(',');
   var id = classes[i].getAttribute('id');
   var trace1 = {
-  y: values,
+  y: values_y,
+  x: values_x,
   type: 'lines'
 };
   var data = [trace1];
