@@ -5,6 +5,7 @@ sys.path.append('../')
 import illuminate
 
 config = None
+export_path = None
 
 def get_config ():
     if not config is None:
@@ -30,6 +31,16 @@ def set_config (config_file):
 def get_data_dir ():
     return get_config()['data_dir']
 
+def get_export_path ():
+    return export_path
+
+def set_export_path (path = None):
+    global export_path
+    if not path is None:
+        export_path = path
+    else:
+        export_path = os.path.abspath(os.getcwd()) + '/'
+
 def get_keep_history ():
     if 'keep_history' in get_config():
         return int(get_config()['keep_history'])
@@ -41,7 +52,7 @@ def get_result(target, file_name = None):
     if file_name is None:
         file_name = target['identifier'] + '.report.json'
 
-    with open('./' + get_data_dir() + file_name, 'r') as read_file:
+    with open(get_export_path() + '/' + get_data_dir() + file_name, 'r') as read_file:
             report = json.load(read_file)
 
     result = {
@@ -107,7 +118,7 @@ def get_history_by_attribute(target,attribute):
     return history_data
 
 def get_history(target):
-    history_file = './' + get_data_dir() + target['identifier'] + '.history.json'
+    history_file = get_export_path() + get_data_dir() + target['identifier'] + '.history.json'
     if os.path.isfile(history_file):
         with open(history_file, "r") as read_file:
             return json.load(read_file)
@@ -116,6 +127,6 @@ def get_history(target):
         return []
 
 def set_history(target, history):
-    history_file = './' + get_data_dir() + target['identifier'] + '.history.json'
+    history_file = get_export_path() + get_data_dir() + target['identifier'] + '.history.json'
     with open(history_file, "w") as write_file:
         json.dump(history, write_file)

@@ -13,8 +13,8 @@ def fetch_data (save = True, url = None, performanceOnly = False):
     global results
     data_dir = utility.get_config()['data_dir']
     # create target dir
-    if not os.path.exists('./' + data_dir):
-        os.makedirs('./' + data_dir)
+    if not os.path.exists(utility.get_export_path() + data_dir):
+        os.makedirs(utility.get_export_path() + data_dir)
 
     # processing targets
     results = []
@@ -51,7 +51,7 @@ def process_target(target, save, performanceOnly = False):
 def lighthouse (target, performanceOnly = False):
     _options = LIGHTHOUSE_OPTIONS
     _options += ' --chrome-flags="' + CHROME_FLAGS + '"'
-    _options += ' --output json --output html --output-path ./' + data_dir + target['identifier']
+    _options += ' --output json --output html --output-path ' + utility.get_export_path() + data_dir + target['identifier']
     if performanceOnly:
         _options += PERFORMANCE_ONLY_OPTION
     return os.system('lighthouse ' + target['url'] + _options)

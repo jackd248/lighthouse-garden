@@ -51,6 +51,7 @@ python illuminate.py
 -g, --gardening     Fetching data by the lighthouse service
 -s, --not-saved     Disable the persistence of received data
 -c, --config        Path to config file
+-ep, --exportpath   Path to export files
 -u, --url           Providing an URL to check
 -n, --run           Number of runs
 -p, --performance   Only measure performance data

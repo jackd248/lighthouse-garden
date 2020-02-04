@@ -8,9 +8,9 @@ ASSETS_JS ='assets/js'
 TAG_CSS = 'style'
 TAG_JS ='script'
 
-def export_html (path = "./"):
+def export_html ():
     now = datetime.datetime.now()
-    file = path + "index.html"
+    file = utility.get_export_path() + "index.html"
 
     html = open(file,"w")
     results = utility.add_average_data_and_sort(utility.get_results())

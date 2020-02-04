@@ -18,6 +18,7 @@ def main():
     parser.add_argument('-v','--verbose', help='Enable console output', required=False)
     parser.add_argument('-s','--not-saved', help='Disable the persistence of received data', required=False)
     parser.add_argument('-c','--config', help='Path to config file', required=False)
+    parser.add_argument('-ep','--exportpath', help='Path to export files', required=False)
     parser.add_argument('-u','--url', help='Providing an URL to check', required=False)
     parser.add_argument('-n','--run', help='Number of runs', required=False)
     parser.add_argument('-p','--performance', help='Only measure performance data', required=False)
@@ -26,6 +27,8 @@ def main():
 
     if not args.config is None:
         utility.set_config(args.config)
+
+    utility.set_export_path(args.exportpath)
 
     if not args.run is None:
         run = int(args.run)
@@ -53,7 +56,7 @@ def main():
 
     if not args.export is None:
         if is_verbose():
-            print('Exporting dashboard to ' + os.path.abspath(os.getcwd()) + '/index.html')
+            print('Exporting dashboard to ' + utility.get_export_path() + 'index.html')
         export.export_html()
 
 def is_verbose():
