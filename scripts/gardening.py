@@ -5,7 +5,7 @@ import os, sys, json, utility
 from urlparse import urlparse
 
 CHROME_FLAGS = '--no-sandbox --headless --disable-gpu'
-LIGHTHOUSE_OPTIONS=' --quiet --emulated-form-factor=none --no-enable-error-reporting --throttling-method=devtools --throttling.requestLatencyMs=0 --throttling.downloadThroughputKbps=0 --throttling.uploadThroughputKbps=0 --throttling.cpuSlowdownMultiplier=0'
+LIGHTHOUSE_OPTIONS=' --quiet --emulated-form-factor=none --no-enable-error-reporting'
 PERFORMANCE_ONLY_OPTION = ' --only-categories=performance'
 
 def fetch_data (save = True, url = None, performanceOnly = False):
