@@ -1,0 +1,21 @@
+{
+    "export_path": "tests/",
+    "keep_history": 10,
+    "targets": [
+        {
+            "title": "Google",
+            "identifier": "google",
+            "url": "https://www.google.com"
+        },
+        {
+            "title": "Yahoo",
+            "identifier": "yahoo",
+            "url": "https://www.yahoo.com/"
+        },
+        {
+            "title": "Bing",
+            "identifier": "bing",
+            "url": "https://www.bing.com/"
+        }
+    ]
+}

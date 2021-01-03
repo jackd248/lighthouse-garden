@@ -1,8 +1,5 @@
 {
-    "title": "Lighthouse Garden",
-    "description": "Monitoring performance data by lighthouse",
-    "data_dir": "data/",
-    "keep_history": 10
+    "keep_history": 10,
     "targets": [
         {
             "title": "Google",

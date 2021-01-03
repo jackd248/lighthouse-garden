@@ -742,3 +742,25 @@ body {
 .c100.orange:hover > span {
   color: #3c4761;
 }
+
+
+/**
+*   Additional
+**/
+
+.c100.small {
+    transform: scale(.5);
+    background-color: #fff;
+}
+.c100.small span {
+    transform: scale(1.7);
+}
+.c100.small.green:after {
+    background-color: #b6f0d2 !important;
+}
+.c100.small.orange:after {
+    background-color: #ffe3b2 !important;
+}
+.c100.small.red:after {
+  background-color: #ffc9c6 !important;
+}
