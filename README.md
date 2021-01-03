@@ -3,6 +3,12 @@
 <p align="center"><img src="./lighthouse_garden/templates/assets/tower.svg" alt="Lighthouse" width="150">
 </p>
 
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/lighthouse_garden-kmi)
+![PyPI](https://img.shields.io/pypi/v/lighthouse_garden-kmi)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jackd248/lighthouse-garden/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jackd248/db-sync-tool/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/jackd248/lighthouse-garden/badges/build.png?b=master)](https://scrutinizer-ci.com/g/jackd248/db-sync-tool/build-status/master)
+
+
 Aggregate a performance overview for various target pages using the [lighthouse](https://github.com/GoogleChrome/lighthouse) service. 
 
 ![Example dashboard ](docs/images/screenshot.png)
@@ -66,6 +72,8 @@ optional arguments:
   -c CONFIG, --config CONFIG
                         Path to config file
 ```
+
+![Example shell](docs/images/lighthouse-garden-example.gif)
 
 ### Cronjob
 
