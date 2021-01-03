@@ -24,7 +24,7 @@ The script needs [python](https://python.org/) __3.5__ or higher. It is necessar
 
 <a name="install-pip"></a>
 ### pip
-The library can be installed from [PyPI](https://pypi.org/project/file-sync-tool-kmi/):
+The library can be installed from [PyPI](https://pypi.org/project/lighthouse-garden-kmi):
 ```bash
 $ pip3 install lighthouse-garden-kmi
 ```
