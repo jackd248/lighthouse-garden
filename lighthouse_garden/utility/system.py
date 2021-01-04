@@ -20,8 +20,8 @@ config = {
     'title': 'Lighthouse Garden',
     'description': 'Monitoring performance data by Google lighthouse',
     'lighthouse': {
-        'chrome_flags': '--no-sandbox --headless --disable-gpu',
-        'options': '--quiet --no-enable-error-reporting --preset=desktop'
+        'chrome_flags': '--no-sandbox --headless --disable-gpu --ignore-certificate-errors --disable-dev-shm-usage',
+        'options': '--quiet --no-enable-error-reporting --preset=desktop --disable-storage-reset'
     }
 }
 
