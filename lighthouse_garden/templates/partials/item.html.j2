@@ -4,6 +4,17 @@
         <a href="{{url}}" target="_blank">{{url}}</a>
     </td>
     <td>
+        <div class="dropdown">
+                <div class="dropdown-toggle" id="dropdown-{{identifier}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        &#8230;
+                </div>
+                <div class="dropdown-menu" aria-labelledby="dropdown-{{identifier}}">
+                        <a class="dropdown-item share-link" href="#{{identifier}}">Link to share</a>
+                        <a class="dropdown-item" href="{{last_report}}">Last report</a>
+                </div>
+        </div>
+    </td>
+    <td>
         {{circle_average}}
     </td>
     <td class="pb-0">

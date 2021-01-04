@@ -31,8 +31,7 @@ table tr:last-child th {
     padding: 0;
 }
 
-table tr:last-child th:nth-child(2),
-table tr:last-child th:nth-child(3) {
+table tr:last-child th {
     background-color: #f8f9fa;
     border-right: 3px solid #fff;
     font-size: 12px;
@@ -43,6 +42,16 @@ table tr:last-child th:nth-child(3) {
 table tr:first-child th {
     border-bottom: 0;
     padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+table tr.highlight {
+    border: 2px solid rgb(255, 164, 0);
+}
+
+table td {
+    position: relative;
 }
 
 .pb-0 {
@@ -65,6 +74,38 @@ table tr:first-child th {
 .icon-mirror svg {
     color: #007bff;
     transform: scale(.5) rotate(180deg);
+}
+
+*[data-toggle="tooltip"]:hover {
+    cursor: pointer;
+}
+
+.dropdown-toggle {
+    margin-top: 10px;
+    color: #007bff;
+    font-size: 1.5rem;
+    transform: rotate(90deg);
+}
+
+.dropdown-toggle:hover {
+    cursor: pointer;
+    color: #0056b3;
+}
+
+.dropdown-toggle:after {
+    display: none;
+}
+
+.tooltip .tooltip-inner {
+    padding: .5rem;
+    font-size: .8rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
 }
 
 footer {

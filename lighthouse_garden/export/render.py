@@ -51,6 +51,7 @@ def render_items():
         _item = render_template('partials/item.html.j2',
                                 title=result['title'],
                                 url=result['url'],
+                                last_report=result['report'],
                                 identifier=_target['identifier'],
                                 graph_values_y=','.join(map(str, database.get_history_by_attribute(
                                     _target, 'performance'))),
@@ -60,28 +61,47 @@ def render_items():
                                     _target, 'report'))),
                                 circle_average=render_percentage_circle(
                                     target=_target,
+                                    description=f'<strong>Average</strong><br/>'
+                                                f'Calculates all available performance values to an average value.<br/><br/>'
+                                                f'Click here to get the average badge.',
                                     attribute='average',
                                     value=result['average']
                                 ),
                                 circle_performance=render_percentage_circle(
                                     target=_target,
+                                    description=f'<strong>Performance</strong><br/>'
+                                                f'The performance score is calculated directly from various metrics. '
+                                                f'See the lighthouse report for further information.<br/><br/>'
+                                                f'Click here to get the performance badge.',
                                     attribute='performance',
                                     value=result['performance']
                                 ),
                                 circle_accessibility=render_percentage_circle(
                                     target=_target,
+                                    description=f'<strong>Accessibility</strong><br/>'
+                                                f'These checks highlight opportunities to improve the accessibility of '
+                                                f'your web app.<br/><br/>'
+                                                f'Click here to get the accessibility badge.',
                                     attribute='accessibility',
                                     value=result['accessibility'],
                                     additional_class='small'
                                 ),
                                 circle_best_practices=render_percentage_circle(
                                     target=_target,
+                                    description=f'<strong>Best practices</strong><br/>'
+                                                f'Further information about best practices.'
+                                                f'See the lighthouse report for further information.<br/><br/>'
+                                                f'Click here to get the best practices badge.',
                                     attribute='best-practices',
                                     value=result['best-practices'],
                                     additional_class='small'
                                 ),
                                 circle_seo=render_percentage_circle(
                                     target=_target,
+                                    description=f'<strong>SEO</strong><br/>'
+                                                f'These checks ensure that your page is optimized for search engine '
+                                                f'results ranking.<br/><br/>'
+                                                f'Click here to get the seo badge.',
                                     attribute='seo',
                                     value=result['seo'],
                                     additional_class='small'
@@ -91,10 +111,11 @@ def render_items():
     return _items
 
 
-def render_percentage_circle(target, attribute, value, additional_class=None):
+def render_percentage_circle(target, description, attribute, value, additional_class=None):
     return render_template('partials/circle.html.j2',
                            url=f'{utility.get_data_dir(absolute_path=False)}_{target["identifier"]}.{attribute}.svg',
                            value=str(int(round(value))),
+                           description=description,
                            color=get_percentage_classification(int(round(value))),
                            small=additional_class
                            )

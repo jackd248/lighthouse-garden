@@ -21,7 +21,7 @@
             <div class="col">
                 <p class="text-muted">{{description}}</p>
             </div>
-            <div class="col-md-auto"><small>Last checked <span class="badge badge-secondary timeago" title="{{date}}">{{date}}</span></small>
+            <div class="col-md-auto"><small>Last checked <span class="badge badge-secondary timeago" data-toggle="tooltip" data-placement="bottom" title="{{date}}">{{date}}</span></small>
             </div>
         </div>
     </div>
@@ -31,15 +31,16 @@
         <thead>
         <tr>
             <th>Target</th>
-            <th>Average</th>
-            <th>Graph</th>
-            <th>Performance</th>
-            <th>Accessibility</th>
-            <th>Best practices</th>
-            <th>SEO</th>
+            <th>More</th>
+            <th class="text-center">Average</th>
+            <th class="text-center">Graph</th>
+            <th class="text-center">Performance</th>
+            <th class="text-center">Accessibility</th>
+            <th class="text-center">Best practices</th>
+            <th class="text-center">SEO</th>
         </tr>
         <tr>
-            <th></th>
+            <th colspan="2">Overview information</th>
             <th colspan="2">Overall performance</th>
             <th colspan="4">Last report</th>
         </tr>
@@ -73,6 +74,8 @@
         </div>
     </div>
 </footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 {{assets_js}}
 </body>
