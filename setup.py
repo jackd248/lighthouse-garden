@@ -34,7 +34,7 @@ setuptools.setup(
     python_requires='>=3.5',
     install_requires=[
         "future-fstrings>=1.2",
-        "Jinja2>=2.11.2"
+        "Jinja2>=2.11.2",
         "anybadge>=1.7.0"
     ],
     entry_points={
