@@ -9,7 +9,7 @@
 [![Build Status](https://scrutinizer-ci.com/g/jackd248/lighthouse-garden/badges/build.png?b=master)](https://scrutinizer-ci.com/g/jackd248/db-sync-tool/build-status/master)
 
 
-Aggregate a performance overview for various target pages using the [lighthouse](https://github.com/GoogleChrome/lighthouse) service. 
+Aggregate a performance overview for various target pages using the [Google Lighthouse](https://github.com/GoogleChrome/lighthouse) service. 
 
 ![Example dashboard ](docs/images/screenshot.png)
 
@@ -90,6 +90,7 @@ Run the script within the [DDEV](https://www.ddev.com/) container:
 ```bash
 $ ddev start
 $ ddev ssh
+/var/www/html$ pip3 install -r requirements.txt
 /var/www/html$ python3 lighthouse_garden -c tests/config.json
 ```
 

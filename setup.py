@@ -13,7 +13,7 @@ setuptools.setup(
     version=info.__version__,
     author='Konrad Michalik',
     author_email='support@konradmichalik.eu',
-    description='Monitoring performance data by lighthouse.',
+    description='Monitoring performance data by Google Lighthouse.',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url=info.__homepage__,
@@ -33,7 +33,9 @@ setuptools.setup(
     ],
     python_requires='>=3.5',
     install_requires=[
-        "future-fstrings>=1.2"
+        "future-fstrings>=1.2",
+        "Jinja2>=2.11.2"
+        "anybadge>=1.7.0"
     ],
     entry_points={
         'console_scripts': [
