@@ -96,6 +96,11 @@ table td {
     display: none;
 }
 
+.dropdown-item svg {
+    color: #007bff;
+    margin-right: 10px;
+}
+
 .tooltip .tooltip-inner {
     padding: .5rem;
     font-size: .8rem;
@@ -121,4 +126,9 @@ footer .jumbotron svg {
     transform: scale(.5);
     filter: grayscale(1);
     opacity:.5;
+}
+
+footer .jumbotron svg:hover {
+    filter: grayscale(0);
+    opacity:1;
 }
