@@ -72,11 +72,26 @@ def generate_badges(target):
     """
     output.println(f'{output.Subject.INFO} Generating badges', verbose_only=True)
     badges = {
-        'performance': database.get_data(target)[-1]['performance'],
-        'accessibility': database.get_data(target)[-1]['accessibility'],
-        'best-practices': database.get_data(target)[-1]['best-practices'],
-        'seo': database.get_data(target)[-1]['seo'],
-        'average': database.get_average_by_attribute(target, 'performance')
+        'performance': {
+            'label': 'performance',
+            'value': database.get_data(target)[-1]['performance'],
+         },
+        'accessibility': {
+            'label': 'accessibility',
+            'value': database.get_data(target)[-1]['accessibility'],
+        },
+        'best-practices': {
+            'label': 'best-practices',
+            'value': database.get_data(target)[-1]['best-practices'],
+        },
+        'seo': {
+            'label': 'seo',
+            'value': database.get_data(target)[-1]['seo'],
+        },
+        'average': {
+            'label': 'performance',
+            'value': database.get_average_by_attribute(target, 'performance')
+        }
     }
 
     for key, value in badges.items():
