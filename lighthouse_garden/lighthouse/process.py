@@ -18,11 +18,14 @@ def fetch_data():
     for target in system.config['targets']:
         _output_name = lighthouse(target)
         _result = database.get_result_by_report_file(target, _output_name)
-        database.add_value_to_history(target, _result)
-        output.println(f'{output.Subject.OK} > {info.get_target_name(target)} ... {_result["performance"]}')
+        if _result:
+            database.add_value_to_history(target, _result)
+            output.println(f'{output.Subject.OK} > {info.get_target_name(target)} ... {_result["performance"]}')
+            utility.extend_html_report_with_info(_result, f'{utility.get_data_dir()}{_output_name}.report.html')
+            generate_badges(target)
+        else:
+            utility.remove_file(f'{utility.get_data_dir()}{_output_name}.report.html')
         utility.remove_file(f'{utility.get_data_dir()}{_output_name}.report.json')
-        utility.extend_html_report_with_info(_result, f'{utility.get_data_dir()}{_output_name}.report.html')
-        generate_badges(target)
 
 
 def lighthouse(target):

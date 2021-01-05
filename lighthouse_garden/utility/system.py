@@ -20,7 +20,7 @@ config = {
     'data_dir': 'd/',
     'keep_history': 0,
     'title': 'Lighthouse Garden',
-    'description': 'Monitoring performance data by Google lighthouse',
+    'description': 'Monitoring performance data by Google Lighthouse',
     'lighthouse': {
         'chrome_flags': '--no-sandbox --headless --disable-gpu --ignore-certificate-errors --disable-dev-shm-usage',
         'options': '--quiet --no-enable-error-reporting --preset=desktop --disable-storage-reset'

@@ -30,7 +30,10 @@ def get_result_by_report_file(target, file_name):
     if not isinstance(_report, dict):
         sys.exit(f'{output.Subject.ERROR} Report not readable')
 
-    _performance = int(round(_report['categories']['performance']['score'] * 100))
+    if _report['categories']['performance']['score']:
+        _performance = int(round(_report['categories']['performance']['score'] * 100))
+    else:
+        return None
 
     _result = {
         'title': target['title'],
@@ -55,16 +58,15 @@ def get_result_by_report_file(target, file_name):
 def get_data(target):
     data_file = f'{utility.get_data_dir()}_{target["identifier"]}.json'
     if os.path.isfile(data_file):
-        with open(data_file, "r") as read_file:
+        with open(data_file, 'r') as read_file:
             return json.load(read_file)
     else:
-        open(data_file, 'w').close()
         return []
 
 
 def set_data(target, data):
     data_file = f'{utility.get_data_dir()}_{target["identifier"]}.json'
-    with open(data_file, "w") as write_file:
+    with open(data_file, 'w') as write_file:
         json.dump(data, write_file)
 
 
@@ -99,8 +101,9 @@ def get_target_by_attribute(value,attribute):
 def get_last_results():
     results = []
     for target in system.config['targets']:
-        _result = get_data(target)[-1]
-        results.append(_result)
+        _result = get_data(target)
+        if _result:
+            results.append(_result[-1])
 
     # sort by performance
     results.sort(key=lambda x: x['performance'], reverse=True)
