@@ -3,10 +3,12 @@
 
 import json
 import os
+import shutil
 import subprocess
 import sys
 
 from lighthouse_garden.utility import output
+from lighthouse_garden.lighthouse import utility
 
 config = {
     'verbose': False,
@@ -117,3 +119,18 @@ def check_path(path):
     run_command(
         f'[ ! -d "{path}" ] && mkdir -p "{path}"'
     )
+
+
+def clear_data():
+    """
+    Clear the performance data and the lighthouse garden dashboard
+    :return:
+    """
+    output.println(f'{output.Subject.INFO} Clear data')
+    _file_path = f'{config["export_path"]}index.html'
+    _dir_path = utility.get_data_dir()
+
+    if os.path.isfile(_file_path):
+        os.remove(_file_path)
+
+    shutil.rmtree(_dir_path)

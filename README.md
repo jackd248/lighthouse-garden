@@ -62,7 +62,7 @@ $ python3 lighthouse_garden
 ```
 
 ```bash
-usage: lighthouse_garden [-h] [-v] [-c CONFIG]
+usage: lighthouse_garden [-h] [-v] [-c CONFIG] [--clear]
 
 Monitoring performance data by lighthouse.
 
@@ -71,6 +71,7 @@ optional arguments:
   -v, --verbose         Enable extended console output
   -c CONFIG, --config CONFIG
                         Path to config file
+  --clear               Clear all performance data and reset the application
 ```
 
 ![Example shell](docs/images/lighthouse-garden-example.gif)

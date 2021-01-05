@@ -17,7 +17,8 @@ def main(args={}):
     args = get_arguments(args)
     illuminate.Lighthouse(
         verbose=args.verbose,
-        config_file=args.config
+        config_file=args.config,
+        clear=args.clear
     )
 
 
@@ -36,6 +37,10 @@ def get_arguments(args):
                         help='Path to config file',
                         required=False,
                         type=str)
+    parser.add_argument('--clear',
+                        help='Clear all performance data and reset the application',
+                        required=False,
+                        action='store_true')
 
     return parser.parse_args()
 
