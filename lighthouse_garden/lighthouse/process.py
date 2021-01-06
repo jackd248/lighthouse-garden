@@ -97,22 +97,22 @@ def generate_badges(target):
     for key, value in badges.items():
         generate_badge(
             target=target,
-            value=value,
+            layout=value,
             attribute=key
         )
 
 
-def generate_badge(target, value, attribute):
+def generate_badge(target, layout, attribute):
     """
 
     :param target:
-    :param value:
+    :param layout:
     :param attribute:
     :return:
     """
     thresholds = {50: 'red',
                   90: 'yellow',
                   100: 'green'}
-    badge = anybadge.Badge(attribute, round(value), thresholds=thresholds)
+    badge = anybadge.Badge(layout['label'], round(layout['value']), thresholds=thresholds)
 
     badge.write_badge(f'{utility.get_data_dir()}_{target["identifier"]}.{attribute}.svg', overwrite=True)
