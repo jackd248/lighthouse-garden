@@ -1,0 +1,6 @@
+include README.md
+include lighthouse_garden/templates/index.html.j2
+include lighthouse_garden/templates/assets/*
+include lighthouse_garden/templates/assets/css/*
+include lighthouse_garden/templates/assets/js/*
+include lighthouse_garden/templates/partials/*

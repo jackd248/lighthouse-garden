@@ -6,12 +6,13 @@ import jinja2
 import os
 import sys
 
+import lighthouse_garden
 from lighthouse_garden import info
 from lighthouse_garden.utility import output, system
 from lighthouse_garden.lighthouse import database, utility
 
-ASSETS_CSS = 'lighthouse_garden/templates/assets/css'
-ASSETS_JS = 'lighthouse_garden/templates/assets/js'
+ASSETS_CSS = '/templates/assets/css'
+ASSETS_JS = '/templates/assets/js'
 
 TAG_CSS = 'style'
 TAG_JS = 'script'
@@ -166,8 +167,8 @@ def render_assets(path, tag):
     :return: String
     """
     _html = ''
-    for file in os.listdir(path):
-        with open(path + '/' + file, 'r') as read_file:
+    for file in os.listdir(os.path.dirname(lighthouse_garden.__file__) + path):
+        with open(os.path.dirname(lighthouse_garden.__file__) + path + '/' + file, 'r') as read_file:
             _html += f'<!-- {file} -->\n<{tag}>\n{read_file.read()}\n</{tag}>\n'
     return _html
 
@@ -177,7 +178,7 @@ def render_logo():
 
     :return:
     """
-    with open('./lighthouse_garden/templates/assets/tower.svg', 'r') as read_file:
+    with open(os.path.dirname(lighthouse_garden.__file__) + '/templates/assets/tower.svg', 'r') as read_file:
         return read_file.read()
 
 

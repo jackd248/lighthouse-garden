@@ -19,6 +19,7 @@ setuptools.setup(
     url=info.__homepage__,
     license='MIT',
     packages=setuptools.find_packages(),
+    include_package_data=True,
     classifiers=[
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
