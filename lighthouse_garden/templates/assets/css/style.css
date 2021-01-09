@@ -113,6 +113,27 @@ table td {
     border-radius: .25rem;
 }
 
+.trend-indicator {
+    display: block;
+    position: absolute;
+    bottom: 16px;
+    left: 10px;
+    border: 4px solid white;
+    color: #fff;
+    border-radius: 50%;
+    z-index: 99;
+}
+
+.trend-indicator.asc {
+    transform: rotate(-45deg);
+    background-color: rgb(12, 206, 107);
+}
+
+.trend-indicator.desc {
+    transform: rotate(45deg);
+    background-color: rgb(255, 78, 66);
+}
+
 footer {
     margin-top: 50px;
     z-index:100;

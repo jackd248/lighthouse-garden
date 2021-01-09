@@ -4,7 +4,7 @@
 import datetime
 import anybadge
 from lighthouse_garden.utility import info, output, system
-from lighthouse_garden.lighthouse import database, utility
+from lighthouse_garden.lighthouse import database, utility, interpreter
 
 
 def fetch_data():
@@ -17,15 +17,15 @@ def fetch_data():
     output.println(f'{output.Subject.INFO} Starting to process targets')
     for target in system.config['targets']:
         _output_name = lighthouse(target)
-        _result = database.get_result_by_report_file(target, _output_name)
+        _result = interpreter.get_result_by_report_file(target, _output_name)
         if _result:
-            database.add_value_to_history(target, _result)
+            database.set_data(target, _result)
             output.println(f'{output.Subject.OK} > {info.get_target_name(target)} ... {_result["performance"]}')
             utility.extend_html_report_with_info(_result, f'{utility.get_data_dir()}{_output_name}.report.html')
             generate_badges(target)
         else:
             utility.remove_file(f'{utility.get_data_dir()}{_output_name}.report.html')
-        utility.remove_file(f'{utility.get_data_dir()}{_output_name}.report.json')
+        #utility.remove_file(f'{utility.get_data_dir()}{_output_name}.report.json')
 
 
 def lighthouse(target):
@@ -74,23 +74,23 @@ def generate_badges(target):
     badges = {
         'performance': {
             'label': 'performance',
-            'value': database.get_data(target)[-1]['performance'],
+            'value': database.get_data(target)['performance'],
          },
         'accessibility': {
             'label': 'accessibility',
-            'value': database.get_data(target)[-1]['accessibility'],
+            'value': database.get_data(target)['accessibility'],
         },
         'best-practices': {
             'label': 'best-practices',
-            'value': database.get_data(target)[-1]['best-practices'],
+            'value': database.get_data(target)['best-practices'],
         },
         'seo': {
             'label': 'seo',
-            'value': database.get_data(target)[-1]['seo'],
+            'value': database.get_data(target)['seo'],
         },
         'average': {
             'label': 'performance',
-            'value': database.get_average_by_attribute(target, 'performance')
+            'value': database.get_data(target)['average']['value']
         }
     }
 
