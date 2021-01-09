@@ -20,6 +20,7 @@ Aggregate a performance overview for various target pages using the [Google Ligh
 - Average performance data
 - History performance graph with stored lighthouse reports
 - Informational badges: ![badge](https://img.shields.io/badge/performance-90-green)
+- Performance trend indicator
 
 
 ## Installation
