@@ -2,7 +2,7 @@
 # -*- coding: future_fstrings -*-
 
 from lighthouse_garden import info
-from lighthouse_garden.utility import output
+from lighthouse_garden.utility import output, system
 
 
 def print_header():
@@ -24,7 +24,10 @@ def print_footer():
     Printing console footer
     :return:
     """
-    output.println(f'{output.Subject.OK} Successfully fetched lighthouse data')
+    if 'errors' in system.config:
+        output.println(f'{output.Subject.WARNING} Errors occurred during execution, see console output for more information')
+    else:
+        output.println(f'{output.Subject.OK} Successfully fetched lighthouse data')
 
 
 def get_target_name(target):

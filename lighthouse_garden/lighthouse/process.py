@@ -25,7 +25,7 @@ def fetch_data():
             generate_badges(target)
         else:
             utility.remove_file(f'{utility.get_data_dir()}{_output_name}.report.html')
-        #utility.remove_file(f'{utility.get_data_dir()}{_output_name}.report.json')
+        utility.remove_file(f'{utility.get_data_dir()}{_output_name}.report.json')
 
 
 def lighthouse(target):
@@ -37,9 +37,14 @@ def lighthouse(target):
     output.println(f'{output.Subject.INFO} Fetching performance data for {info.get_target_name(target)}', verbose_only=True)
 
     _output_name = generate_output_name(target)
-    system.run_command(
+    _result = system.run_command(
         f'lighthouse {target["url"]} {build_options(_output_name)}', allow_fail=True
     )
+
+    if not _result:
+        output.println(f'{output.Subject.ERROR} > {info.get_target_name(target)} ...')
+        system.config['errors'] = True
+
     return _output_name
 
 

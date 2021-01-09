@@ -88,11 +88,14 @@ def run_command(command, return_output=False, allow_fail=False):
         _error_message = f'{output.Subject.ERROR} {err.decode()}'
         if allow_fail:
             output.println(_error_message)
+            return False
         else:
             sys.exit(_error_message)
 
     if return_output:
         return out.decode()
+
+    return True
 
 
 def check_lighthouse_version():
