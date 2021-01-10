@@ -5,8 +5,8 @@
 
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/lighthouse_garden-kmi)
 ![PyPI](https://img.shields.io/pypi/v/lighthouse_garden-kmi)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jackd248/lighthouse-garden/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jackd248/db-sync-tool/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/jackd248/lighthouse-garden/badges/build.png?b=master)](https://scrutinizer-ci.com/g/jackd248/db-sync-tool/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jackd248/lighthouse-garden/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jackd248/lighthouse-garden/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/jackd248/lighthouse-garden/badges/build.png?b=master)](https://scrutinizer-ci.com/g/jackd248/lighthouse-garden/build-status/master)
 
 
 Aggregate a performance overview for various target pages using the [Google Lighthouse](https://github.com/GoogleChrome/lighthouse) service. 
