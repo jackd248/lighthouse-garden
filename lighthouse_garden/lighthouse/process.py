@@ -9,11 +9,12 @@ from lighthouse_garden.lighthouse import database, utility, interpreter
 
 def fetch_data():
     """
-
+    Fetch the lighthouse data of all given targets
     :return:
     """
     output.println(f'{output.Subject.INFO} Checking export path', verbose_only=True)
     system.check_path(f'{system.config["export_path"]}/{system.config["data_dir"]}')
+
     output.println(f'{output.Subject.INFO} Starting to process targets')
     for target in system.config['targets']:
         _output_name = lighthouse(target)
@@ -30,8 +31,8 @@ def fetch_data():
 
 def lighthouse(target):
     """
-
-    :param target:
+    Fetch the lighthouse data of a specific target
+    :param target: Dict
     :return:
     """
     output.println(f'{output.Subject.INFO} Fetching performance data for {info.get_target_name(target)}', verbose_only=True)
@@ -50,8 +51,9 @@ def lighthouse(target):
 
 def build_options(output_name):
     """
-
-    :param output_name:
+    Build the lighthouse options
+    @ToDo: Use a separate config file?
+    :param output_name: String
     :return:
     """
     _options = system.config['lighthouse']['options']
@@ -71,8 +73,8 @@ def generate_output_name(target):
 
 def generate_badges(target):
     """
-
-    :param target:
+    Generate the badges for the various metrics of a specific target
+    :param target: Dict
     :return:
     """
     output.println(f'{output.Subject.INFO} Generating badges', verbose_only=True)
@@ -109,10 +111,10 @@ def generate_badges(target):
 
 def generate_badge(target, layout, attribute):
     """
-
-    :param target:
-    :param layout:
-    :param attribute:
+    Generate a badge
+    :param target: Dict
+    :param layout: Dict
+    :param attribute: String
     :return:
     """
     thresholds = {50: 'red',

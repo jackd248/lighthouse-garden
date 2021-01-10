@@ -4,13 +4,15 @@
 import datetime
 import jinja2
 import os
-import sys
 
 import lighthouse_garden
 from lighthouse_garden import info
 from lighthouse_garden.utility import output, system
 from lighthouse_garden.lighthouse import database, utility
 
+"""
+CONSTANTS
+"""
 ASSETS_CSS = '/templates/assets/css'
 ASSETS_JS = '/templates/assets/js'
 
@@ -19,6 +21,10 @@ TAG_JS = 'script'
 
 
 def generate_dashboard():
+    """
+    Generate the static html dashboard
+    :return:
+    """
     _now = datetime.datetime.now()
     _file = f'{system.config["export_path"]}index.html'
     output.println(f'{output.Subject.INFO} Generating dashboard {output.CliFormat.BLACK}{_file}{output.CliFormat.ENDC}')
@@ -42,6 +48,11 @@ def generate_dashboard():
 
 
 def render_items():
+    """
+    Render the target items for the dashboard
+    @ToDo: Outsource description text?
+    :return:
+    """
     _items = ''
     results = database.sort_by_average(
         database.get_last_results()
@@ -114,6 +125,15 @@ def render_items():
 
 
 def render_percentage_circle(description, value, trend='', url='', additional_class=None):
+    """
+    Render the percentage circle for a specific attribute
+    :param description: String
+    :param value: Integer
+    :param trend: String
+    :param url: String
+    :param additional_class:
+    :return:
+    """
     return render_template('partials/circle.html.j2',
                            url=url,
                            value=str(int(round(value))),
@@ -126,8 +146,8 @@ def render_percentage_circle(description, value, trend='', url='', additional_cl
 
 def render_trend(result):
     """
-
-    :param result:
+    Render the performance trend
+    :param result: Dict
     :return:
     """
     _description = ''
@@ -151,6 +171,12 @@ def render_trend(result):
 
 
 def get_percentage_classification(value):
+    """
+    Get the percentage classification by a value
+    @ToDo: Make this configurable
+    :param value:
+    :return:
+    """
     if value >= 90:
         return 'green'
     elif value >= 50:
@@ -161,7 +187,7 @@ def get_percentage_classification(value):
 
 def render_assets(path, tag):
     """
-
+    Render the css/js assets
     :param path: String
     :param tag: String
     :return: String
@@ -175,7 +201,7 @@ def render_assets(path, tag):
 
 def render_logo():
     """
-
+    Render the SVG logo file
     :return:
     """
     with open(os.path.dirname(lighthouse_garden.__file__) + '/templates/assets/tower.svg', 'r') as read_file:

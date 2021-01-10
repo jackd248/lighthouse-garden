@@ -2,13 +2,13 @@
 # -*- coding: future_fstrings -*-
 
 import os
-from lighthouse_garden.utility import system
+from lighthouse_garden.utility import output, system
 from lighthouse_garden.export import render
 
 
 def get_data_dir(absolute_path=True):
     """
-
+    Return the data directory path and handle missing slashes
     :param absolute_path: Boolean
     :return:
     """
@@ -22,6 +22,10 @@ def get_data_dir(absolute_path=True):
 
 
 def get_export_dir():
+    """
+    Return the export directory path and handle missing slashes
+    :return:
+    """
     _export_dir_path = f'{system.config["export_path"]}'
     if _export_dir_path[-1] != '/':
         _export_dir_path += '/'
@@ -30,20 +34,19 @@ def get_export_dir():
 
 def remove_file(file_name):
     """
-
+    Remove a local file
     :param file_name:
     :return:
     """
-    _report_path = f'{get_data_dir()}{file_name}'
     if os.path.exists(file_name):
         os.remove(file_name)
 
 
 def extend_html_report_with_info(result, file_name):
     """
-
-    :param result:
-    :param file_name:
+    Extend the existing lighthouse html report with an additional info box
+    :param result: Dict
+    :param file_name: String
     :return:
     """
     if os.path.isfile(file_name):
@@ -59,4 +62,5 @@ def extend_html_report_with_info(result, file_name):
             del(_html[-1])
 
         with open(file_name, 'w') as file:
+            output.println(f'{output.Subject.INFO} Extend html report with info box', verbose_only=True)
             file.writelines(_html)

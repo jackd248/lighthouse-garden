@@ -31,7 +31,7 @@ config = {
 def check_args(config_file=None,
                verbose=False):
     """
-
+    Check the input arguments
     :param config_file:
     :param verbose:
     :return:

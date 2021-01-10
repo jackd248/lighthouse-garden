@@ -32,7 +32,7 @@ def print_footer():
 
 def get_target_name(target):
     """
-
+    Get the pretty target name
     :param target: Dict
     :return:
     """

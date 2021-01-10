@@ -7,13 +7,13 @@ import os
 import sys
 from collections import defaultdict
 
-from lighthouse_garden.utility import output, system
+from lighthouse_garden.utility import output
 from lighthouse_garden.lighthouse import utility, database
 
 
 def get_result_by_report_file(target, file_name):
     """
-
+    Generate the result by a given lighthouse report file
     :param target: Dict
     :param file_name: String
     :return:
@@ -34,6 +34,7 @@ def get_result_by_report_file(target, file_name):
     if _report['categories']['performance']['score']:
         _performance = int(round(_report['categories']['performance']['score'] * 100))
     else:
+        output.println(f'{output.Subject.ERROR} Missing performance score', verbose_only=True)
         return None
 
     _result = defaultdict(lambda: defaultdict(dict))
@@ -92,9 +93,9 @@ def get_result_by_report_file(target, file_name):
 
 def get_trend(target, attribute):
     """
-
-    :param target:
-    :param attribute:
+    Calculates a performance trend in dependence of the last performance measurement to the average value
+    :param target: Dict
+    :param attribute: String
     :return:
     """
     _average = database.get_average_by_attribute(target, attribute)
