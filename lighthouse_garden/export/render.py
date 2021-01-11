@@ -215,7 +215,7 @@ def render_template(template, **args):
     :param args: Dictionary Template arguments
     :return: String Rendered Template
     """
-    _template_loader = jinja2.FileSystemLoader(searchpath="./lighthouse_garden/templates/")
+    _template_loader = jinja2.FileSystemLoader(searchpath=os.path.dirname(lighthouse_garden.__file__) + "/templates/")
     _template_environment = jinja2.Environment(loader=_template_loader)
     _template = _template_environment.get_template(template)
     return _template.render(args)
