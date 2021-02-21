@@ -134,6 +134,11 @@ table td {
     background-color: rgb(255, 78, 66);
 }
 
+iframe {
+    width: 100%;
+    border: 0;
+}
+
 footer {
     margin-top: 50px;
     z-index:100;

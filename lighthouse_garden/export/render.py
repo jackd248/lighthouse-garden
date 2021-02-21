@@ -84,6 +84,7 @@ def render_items():
                                                 f'The performance score is calculated directly from various metrics.<br/><br/>'
                                                 f'Click here to get more information from the last report.',
                                     url=f'{result["report"]}#performance',
+                                    title=f'Report {result["date"]}',
                                     value=result['performance']
                                 ),
                                 circle_accessibility=render_percentage_circle(
@@ -93,6 +94,7 @@ def render_items():
                                                 f'Click here to get more information from the last report.',
                                     value=result['accessibility'],
                                     url=f'{result["report"]}#accessibility',
+                                    title=f'Report {result["date"]}',
                                     additional_class='small'
                                 ),
                                 circle_best_practices=render_percentage_circle(
@@ -102,6 +104,7 @@ def render_items():
                                                 f'Click here to get more information from the last report.',
                                     value=result['best-practices'],
                                     url=f'{result["report"]}#best-practices',
+                                    title=f'Report {result["date"]}',
                                     additional_class='small'
                                 ),
                                 circle_seo=render_percentage_circle(
@@ -111,6 +114,7 @@ def render_items():
                                                 f'Click here to get more information from the last report.',
                                     value=result['seo'],
                                     url=f'{result["report"]}#seo',
+                                    title=f'Report {result["date"]}',
                                     additional_class='small'
                                 ),
                                 api_json=f'{utility.get_data_dir(absolute_path=False)}_{_target["identifier"]}.json',
@@ -124,7 +128,7 @@ def render_items():
     return _items
 
 
-def render_percentage_circle(description, value, trend='', url='', additional_class=None):
+def render_percentage_circle(description, value, trend='', url='', title='', additional_class=None):
     """
     Render the percentage circle for a specific attribute
     :param description: String
@@ -136,6 +140,7 @@ def render_percentage_circle(description, value, trend='', url='', additional_cl
     """
     return render_template('partials/circle.html.j2',
                            url=url,
+                           title=title,
                            value=str(int(round(value))),
                            description=description,
                            color=get_percentage_classification(int(round(value))),

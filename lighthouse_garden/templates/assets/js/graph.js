@@ -52,8 +52,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         myPlot.on('plotly_click', function(data){
             data.points.map(function(d){
-                var key = Object.keys(d.data.x).find(key => d.data.x[key] === d.x);
-                window.open(d.data.z[key],'_self');
+              var key = Object.keys(d.data.x).find(key => d.data.x[key] === d.x);
+              var modal = $('#frameModal');
+              modal.find('.modal-title').text('Report ' + d.data.x[key]);
+              modal.find('.modal-body').html('<iframe src="' + d.data.z[key] + '">');
+              modal.find('.modal-body iframe').height(0.8 * $(document).height());
+              modal.modal('show');
             });
         });
     }

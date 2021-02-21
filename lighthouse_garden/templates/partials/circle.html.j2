@@ -1,4 +1,4 @@
-<a href="{{url}}">
+<div {{ 'data-toggle="modal" data-target="#frameModal"' if url }} data-url="{{url}}" data-title="{{title}}">
     <div class="c100 p{{value}} {{color}} {{small}}" data-toggle="tooltip" data-placement="bottom" data-html="true" title="{{description}}">
         <span>{{value}}</span>
         <div class="slice">
@@ -7,4 +7,4 @@
         </div>
     </div>
     {{trend}}
-</a>
+</div>
