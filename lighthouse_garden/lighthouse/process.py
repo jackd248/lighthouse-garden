@@ -78,26 +78,27 @@ def generate_badges(target):
     :return:
     """
     output.println(f'{output.Subject.INFO} Generating badges', verbose_only=True)
+    data = database.get_data(target)
     badges = {
         'performance': {
             'label': 'performance',
-            'value': database.get_data(target)['performance'],
+            'value': data['performance'] if 'performance' in data else '',
          },
         'accessibility': {
             'label': 'accessibility',
-            'value': database.get_data(target)['accessibility'],
+            'value': data['accessibility'] if 'accessibility' in data else '',
         },
         'best-practices': {
             'label': 'best-practices',
-            'value': database.get_data(target)['best-practices'],
+            'value': data['best-practices'] if 'best-practices' in data else '',
         },
         'seo': {
             'label': 'seo',
-            'value': database.get_data(target)['seo'],
+            'value': data['seo'] if 'seo' in data else '',
         },
         'average': {
             'label': 'performance',
-            'value': database.get_data(target)['average']['value']
+            'value': data['average']['value'] if 'average' in data else '',
         }
     }
 
